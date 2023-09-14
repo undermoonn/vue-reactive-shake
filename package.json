@@ -4,7 +4,7 @@
     "type": "git",
     "url": "https://github.com/undermoonn/vue-reactive-shake"
   },
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0-alpha.1",
   "description": "",
   "main": "dist/index.mjs",
   "types": "dist/index.d.ts",
