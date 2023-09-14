@@ -3,13 +3,20 @@
     "browser": true,
     "node": true
   },
-  "extends": ["standard-with-typescript"],
+  "ignorePatterns": [
+    "**.test.ts"
+  ],
+  "extends": [
+    "standard-with-typescript"
+  ],
   "overrides": [
     {
       "env": {
         "node": true
       },
-      "files": [".eslintrc.{js,cjs}"],
+      "files": [
+        ".eslintrc.{js,cjs}"
+      ],
       "parserOptions": {
         "sourceType": "script"
       }

@@ -1,6 +1,4 @@
 import { type Ref, type UnwrapRef, isRef } from '@vue/reactivity'
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-expect-error
 import lodashSet from 'lodash.set'
 
 export function useReactiveShake<T extends Ref<object> | object>(obj: T): [T, UnwrapRef<T>] {
