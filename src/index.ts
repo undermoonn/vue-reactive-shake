@@ -9,13 +9,16 @@ export function useReactiveShake<T extends Ref<object> | object>(obj: T): [T, Un
     receiver: object,
     parentKey: string
   ): object | string | null | undefined {
+    if (typeof key !== 'string') {
+      return '[property type]' + typeof key
+    }
     const keyPath = parentKey ? `${parentKey}.${key}` : key
     const res = Reflect.get(target, key, receiver)
     if (typeof res === 'function') {
-      return '[function]'
+      return typeof res
     }
     if (typeof res === 'symbol') {
-      return '[symbol]'
+      return typeof res
     }
     if (res === null) {
       return null
