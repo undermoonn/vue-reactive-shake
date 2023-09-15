@@ -1,5 +1,9 @@
 # vue-reactive-shake
 
+### Performance Test in Nuxt3: `shake state` vs `state`
+
+https://github.com/undermoonn/vue-reactive-shake-perf
+
 ### Use Cases
 
 ```js
