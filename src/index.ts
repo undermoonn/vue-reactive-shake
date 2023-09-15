@@ -1,5 +1,4 @@
 import { type Ref, type UnwrapRef, isRef } from '@vue/reactivity'
-import lodashSet from 'lodash.set'
 
 export function useReactiveShake<T extends Ref<object> | object>(obj: T): [T, UnwrapRef<T>] {
   const shaked: UnwrapRef<T> = Object.create(null)
@@ -32,9 +31,9 @@ export function useReactiveShake<T extends Ref<object> | object>(obj: T): [T, Un
     const isRefPrivate = keyPath.startsWith('_value')
     if (!isVueReactiveDefined && !isRefPrivate) {
       if (isRef(obj)) {
-        lodashSet(shaked, keyPath.replace(/^value./, ''), res)
+        deepSet(shaked, keyPath.replace(/^value./, ''), res)
       } else {
-        lodashSet(shaked, keyPath, res)
+        deepSet(shaked, keyPath, res)
       }
     }
     return res
@@ -47,4 +46,21 @@ export function useReactiveShake<T extends Ref<object> | object>(obj: T): [T, Un
   })
 
   return [proxy, shaked]
+}
+
+function deepSet<T extends object>(target: T, path: string, value: any): T {
+  const keys = path.split('.')
+  let t: any = target
+  keys.forEach((key, idx) => {
+    if (idx === keys.length - 1) {
+      Reflect.set(t, key, value)
+      return
+    }
+    if (typeof t[key] === 'undefined') {
+      Reflect.set(t, key, {})
+    }
+    t = t[key]
+  })
+
+  return target
 }
